@@ -1,0 +1,33 @@
+VITRA - INSTALACIÓN DE BASE DE DATOS
+
+1. Abre MySQL Workbench.
+2. Abre una pestaña SQL nueva.
+3. Abre o copia todo el archivo vitra_db.sql.
+4. Ejecuta el script completo con el botón del rayo.
+5. Verifica que aparezca la base de datos vitra_db.
+
+PARA CONECTAR LA WEB:
+6. Instala/inicia XAMPP y activa Apache + MySQL.
+7. Copia la carpeta VITRA dentro de C:\xampp\htdocs\
+8. Si MySQL root tiene contraseña, edita conexion.php y cambia $pass.
+9. Abre la web mediante localhost, no haciendo doble clic al HTML.
+   Ejemplo: http://localhost/VITRA/registro.html
+10. Llena el formulario y pulsa "Solicitar demo".
+
+PARA VER LOS REGISTROS EN WORKBENCH:
+USE vitra_db;
+SELECT s.id_solicitud, s.nombre, s.telefono, s.correo,
+       s.fecha_preferida, s.hora_preferida,
+       t.nombre AS tipo_proyecto, s.necesidad, s.estado, s.creado_en
+FROM solicitudes_demo s
+INNER JOIN tipos_proyecto t ON t.id_tipo = s.id_tipo
+ORDER BY s.id_solicitud DESC;
+
+ARCHIVOS AGREGADOS:
+- vitra_db.sql              Base de datos lista para Workbench.
+- conexion.php              Conexión PHP -> MySQL.
+- guardar_solicitud.php     Guarda el formulario.
+- INSTRUCCIONES-BASE-DE-DATOS.txt
+
+ARCHIVO MODIFICADO:
+- registro.html: ahora envía a guardar_solicitud.php y el campo correo quedó corregido.
